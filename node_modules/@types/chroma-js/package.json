@@ -1,0 +1,36 @@
+{
+    "name": "@types/chroma-js",
+    "version": "2.4.5",
+    "description": "TypeScript definitions for chroma-js",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/chroma-js",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Sebastian Brückner",
+            "githubUsername": "invliD",
+            "url": "https://github.com/invliD"
+        },
+        {
+            "name": "Marcin Pacholec",
+            "githubUsername": "mpacholec",
+            "url": "https://github.com/mpacholec"
+        },
+        {
+            "name": "Charlie Zhuo",
+            "githubUsername": "CharlieZhuo",
+            "url": "https://github.com/CharlieZhuo"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/chroma-js"
+    },
+    "scripts": {},
+    "dependencies": {},
+    "peerDependencies": {},
+    "typesPublisherContentHash": "d3ae3b33e01c8bcfa7da169d8a8515fb886baff95c8b86a998ca2a59dc53341a",
+    "typeScriptVersion": "5.0"
+}

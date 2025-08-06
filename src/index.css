@@ -1,0 +1,391 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: #1f2937;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Asegura que el root tome la altura completa */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Variables para el manejo de altura en diferentes navegadores */
+:root {
+  --app-height: 100%;
+}
+
+/* Para navegadores modernos que soportan CSS custom properties */
+@supports (height: 100dvh) {
+  :root {
+    --app-height: 100dvh;
+  }
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 768px) {
+  :root {
+    --app-height: -webkit-fill-available;
+  }
+}
+
+.app-container {
+  min-height: var(--app-height);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
+.app-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .app-body {
+    flex-direction: row;
+  }
+}
+
+/* Board container styling */
+.board-container {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(107, 114, 128, 0.5) rgba(107, 114, 128, 0.1);
+}
+
+.board-container::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.board-container::-webkit-scrollbar-track {
+  background: rgba(107, 114, 128, 0.1);
+  border-radius: 3px;
+}
+
+.board-container::-webkit-scrollbar-thumb {
+  background-color: rgba(107, 114, 128, 0.5);
+  border-radius: 3px;
+}
+
+/* CORRECCIÓN: Estilos para la imagen del tablero - versión unificada */
+.game-board-image {
+  max-width: 100%;
+  width: auto;
+  /* Cambio importante: no forzar 100% de ancho */
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.375rem;
+  margin: 0 auto;
+  display: block;
+  min-height: 300px;
+  /* Altura mínima para asegurar visibilidad */
+}
+
+/* En pantallas grandes, hacer que la imagen sea más grande */
+@media (min-width: 1024px) {
+  .game-board-image {
+    width: 90%;
+    /* Usar porcentaje alto pero no 100% */
+    min-height: 500px;
+    /* Mayor altura mínima en pantallas grandes */
+    max-height: calc(var(--app-height) - 200px);
+  }
+
+  .gameboard-image-container {
+    min-height: 500px;
+  }
+}
+
+/* En pantallas medianas, ajustar el tamaño */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .game-board-image {
+    width: 85%;
+    min-height: 400px;
+  }
+
+  .gameboard-image-container {
+    min-height: 450px;
+  }
+}
+
+/* En pantallas pequeñas, usar un tamaño adecuado */
+@media (max-width: 767px) {
+  .game-board-image {
+    width: 95%;
+    min-height: 250px;
+  }
+
+  .gameboard-image-container {
+    min-height: 300px;
+  }
+
+  input,
+  button,
+  select,
+  textarea {
+    font-size: 16px !important;
+    /* Prevenir zoom en móviles */
+  }
+}
+
+/* Clase de ayuda para elementos que necesitan altura ajustada */
+.full-height-adjusted {
+  height: calc(var(--app-height) - 100px);
+  max-height: calc(var(--app-height) - 100px);
+}
+
+/* Asegurar que la parte principal del contenido siempre tenga suficiente espacio */
+.app-main {
+  min-height: 300px;
+  flex-grow: 1;
+}
+
+@media (min-width: 1024px) {
+  .app-main {
+    min-height: calc(var(--app-height) - 180px);
+  }
+}
+
+/* Improve scrollbar appearance */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a8a8a8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* Basic button styling reset */
+button {
+  font-family: inherit;
+}
+
+/* Custom select styling */
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  appearance: none;
+  transition: all 0.2s ease-in-out;
+}
+
+select:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%233b82f6' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+select:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-alt {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Enhanced shadows */
+.shadow-elegant {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Input focus effects */
+input:focus,
+select:focus {
+  transform: scale(1.02);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* Mobile optimizations for selects */
+@media (max-width: 768px) {
+  select {
+    font-size: 16px;
+    /* Prevent zoom on mobile */
+    padding: 0.875rem 2.5rem 0.875rem 0.75rem;
+  }
+}
+
+/* Custom grid for board (31 columns: 1 for row labels + 30 for cells) */
+.grid-cols-31 {
+  display: grid;
+  grid-template-columns: repeat(31, minmax(0, 1fr));
+}
+
+/* Board sizing variables - usando Container Queries (solución más simple) */
+.gameboard-content {
+  max-width: 100%;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+/* Tamaño base del tablero usando container queries */
+.board-grid {
+  --cell-size: clamp(8px, calc((100cqw - 4rem) / 32.875), 40px);
+  --gap-size: clamp(1px, calc(var(--cell-size) * 0.075), 3px);
+
+  display: grid;
+  grid-template-columns: repeat(31, var(--cell-size));
+  gap: var(--gap-size);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.board-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  position: relative;
+}
+
+.board-cell:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* Grid cell hover effect */
+.grid-cell {
+  cursor: pointer;
+  transition: background-color 0.1s;
+  position: relative;
+}
+
+.grid-cell:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+
+.grid-cell:active {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Show coordinate on cell hover */
+.grid-cell::after {
+  content: attr(data-x) ',' attr(data-y);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 50;
+}
+
+.grid-cell:hover::after {
+  opacity: 1;
+}
+
+/* Larger interactive areas for mobile */
+@media (max-width: 768px) {
+  button {
+    min-height: 44px;
+  }
+
+  input {
+    min-height: 44px;
+  }
+
+  /* Hide grid cell hover effect on mobile */
+  .grid-cell::after {
+    display: none;
+  }
+}
+
+@font-face {
+  font-family: 'TikiTropic';
+  src: url('/fonts/TikiTropic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body, #root, * {
+  font-family: 'TikiTropic', Arial, sans-serif !important;
+}
+
+h1, .font-kinddaily {
+  font-family: 'KindDaily', 'TikiTropic', Arial, sans-serif !important;
+}
